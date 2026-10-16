@@ -1,0 +1,4 @@
+com/municipal/backend/BackendApplication.class
+com/municipal/backend/model/Complaint.class
+com/municipal/backend/repository/ComplaintRepository.class
+com/municipal/backend/controller/ComplaintController.class
