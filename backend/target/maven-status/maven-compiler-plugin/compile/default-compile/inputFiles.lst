@@ -1,4 +1,4 @@
 /home/chaitanya/Codes/municipal-project/backend/src/main/java/com/municipal/backend/BackendApplication.java
-/home/chaitanya/Codes/municipal-project/backend/src/main/java/com/municipal/backend/Complaint.java
 /home/chaitanya/Codes/municipal-project/backend/src/main/java/com/municipal/backend/controller/ComplaintController.java
+/home/chaitanya/Codes/municipal-project/backend/src/main/java/com/municipal/backend/model/Complaint.java
 /home/chaitanya/Codes/municipal-project/backend/src/main/java/com/municipal/backend/repository/ComplaintRepository.java
