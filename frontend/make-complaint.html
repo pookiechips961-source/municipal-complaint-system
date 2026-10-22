@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Complaint - Municipality System</title>
+    <link rel="stylesheet" href="css/styleform.css">
+</head>
+<body>
+
+<header>
+    <h1>Municipality Complaint System</h1>
+</header>
+
+<main>
+    <section class="form-container">
+        <a href="index.html" class="btn-back">&larr; Back to Public Feed</a>
+        
+        <h2>File a New Complaint</h2>
+
+        <form id="complaintForm" onsubmit="handleFormSubmit(event)">
+            
+            <div class="form-group">
+                <label for="title">Title *</label>
+                <input type="text" id="title" name="title" required placeholder="Enter complaint title">
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category *</label>
+                <select id="category" name="category" required>
+                    <option value="">Select Category</option>
+                    <option value="Roads & Infrastructure">Roads &amp; Infrastructure</option>
+                    <option value="Sanitation">Sanitation &amp; Waste Management</option>
+                    <option value="Water Supply">Water Supply &amp; Drainage</option>
+                    <option value="Street Lighting">Street Lighting</option>
+                    <option value="Parks & Public Spaces">Parks &amp; Public Spaces</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description *</label>
+                <textarea id="description" name="description" rows="4" required placeholder="Describe the issue in detail..."></textarea>
+            </div>
+
+            <!-- Location Helper Button -->
+            <div class="form-group">
+                <button type="button" id="btnLocation" class="btn-location" onclick="fetchCurrentLocation()">📍 Use Current GPS Location</button>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="latitude">Latitude *</label>
+                    <input type="number" step="any" id="latitude" name="latitude" required placeholder="e.g. 19.2812">
+                </div>
+
+                <div class="form-group">
+                    <label for="longitude">Longitude *</label>
+                    <input type="number" step="any" id="longitude" name="longitude" required placeholder="e.g. 72.8554">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="imageData">Image (PNG File) *</label>
+                <input type="file" id="imageData" name="imageData" accept="image/png" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Submit Complaint</button>
+                <button type="reset" class="btn-clear">Clear</button>
+            </div>
+
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Municipality Civic Services Portal. All rights reserved.</p>
+</footer>
+
+<script src="js/form.js"></script>
+</body>
+</html>

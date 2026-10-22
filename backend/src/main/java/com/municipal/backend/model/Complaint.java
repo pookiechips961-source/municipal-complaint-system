@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "complaints")
@@ -17,25 +18,47 @@ public class Complaint {
     private String title;
     private String category;
     private String description;
+    
     private double latitude;
     private double longitude;
-    private String status = "Submitted";
+    
+    private String status = "Pending";
+
+    @Column(columnDefinition = "TEXT")
     private String imageData;
+
+    private int upvotes = 0;
+    private int downvotes = 0;
+
+    public Complaint() {}
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
+
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
+
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
     public double getLatitude() { return latitude; }
     public void setLatitude(double latitude) { this.latitude = latitude; }
+
     public double getLongitude() { return longitude; }
     public void setLongitude(double longitude) { this.longitude = longitude; }
+
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
     public String getImageData() { return imageData; }
     public void setImageData(String imageData) { this.imageData = imageData; }
+
+    public int getUpvotes() { return upvotes; }
+    public void setUpvotes(int upvotes) { this.upvotes = upvotes; }
+
+    public int getDownvotes() { return downvotes; }
+    public void setDownvotes(int downvotes) { this.downvotes = downvotes; }
 }

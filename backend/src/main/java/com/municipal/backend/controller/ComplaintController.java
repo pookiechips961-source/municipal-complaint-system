@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/complaints")
-@CrossOrigin(origins = "*") 
+@CrossOrigin(origins = "*")
 public class ComplaintController {
 
     @Autowired
@@ -23,17 +22,31 @@ public class ComplaintController {
 
     @PostMapping
     public Complaint createComplaint(@RequestBody Complaint complaint) {
+        if (complaint.getStatus() == null || complaint.getStatus().isEmpty()) {
+            complaint.setStatus("Pending");
+        }
         return complaintRepository.save(complaint);
     }
 
     @PatchMapping("/{id}/status")
     public Complaint updateStatus(@PathVariable Long id, @RequestParam String status) {
-        Optional<Complaint> optionalComplaint = complaintRepository.findById(id);
-        if (optionalComplaint.isPresent()) {
-            Complaint complaint = optionalComplaint.get();
-            complaint.setStatus(status);
-            return complaintRepository.save(complaint);
+        Complaint complaint = complaintRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Complaint not found with id: " + id));
+        complaint.setStatus(status);
+        return complaintRepository.save(complaint);
+    }
+
+    @PatchMapping("/{id}/vote")
+    public Complaint voteComplaint(@PathVariable Long id, @RequestParam String type) {
+        Complaint complaint = complaintRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Complaint not found with id: " + id));
+        
+        if ("up".equalsIgnoreCase(type)) {
+            complaint.setUpvotes(complaint.getUpvotes() + 1);
+        } else if ("down".equalsIgnoreCase(type)) {
+            complaint.setDownvotes(complaint.getDownvotes() + 1);
         }
-        throw new RuntimeException("Complaint not found with id " + id);
+        
+        return complaintRepository.save(complaint);
     }
 }
